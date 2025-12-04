@@ -1,0 +1,21 @@
+Use Colab with GPU → faster training than CPU.
+
+Mount Google Drive → access dataset in Colab.
+
+Load image/mask paths → use glob and Path; handle case-insensitive extensions.
+
+Select training images → only use images with corresponding masks (1–21, 69–89).
+
+Custom Dataset (UterusDataset) → loads image-mask pairs.
+
+Transforms / Augmentation:
+
+Resize to (256, 256)
+
+Random horizontal/vertical flips (image + mask together)
+
+Color jitter only for images
+
+Convert to tensors
+
+DataLoader → batching + shuffling for training.
