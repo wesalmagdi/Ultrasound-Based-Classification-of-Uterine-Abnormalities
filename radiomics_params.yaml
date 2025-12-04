@@ -1,0 +1,28 @@
+# -----------------------------
+# PyRadiomics configuration for 2D Ultrasound
+# -----------------------------
+
+imageType:
+  Original: {}
+  LoG:
+    sigma: [1.0, 2.0, 3.0]
+  Wavelet: {}
+
+featureClass:
+  firstorder: []
+  glcm: []
+  glrlm: []
+  glszm: []
+  gldm: []
+  ngtdm: []
+
+setting:
+  binWidth: 8
+  resampledPixelSpacing: null
+  interpolator: 'sitkBSpline'
+  padDistance: 5
+
+  correctMask: true
+
+  force2D: true
+  force2Ddimension: 0
