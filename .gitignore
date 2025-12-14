@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 data/images/
 data/masks/
 .ipynb_checkpoints/
+=======
+*.h5
+>>>>>>> 7c9fa84 (Initial commit - code, notebooks, and data, checkpoint ignored)
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+<<<<<<< HEAD
 .DS_Store
 Thumbs.db
+=======
+*.swp
+>>>>>>> 7c9fa84 (Initial commit - code, notebooks, and data, checkpoint ignored)
