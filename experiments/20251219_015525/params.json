@@ -1,0 +1,12 @@
+{
+    "image_shape": [
+        224,
+        224,
+        1
+    ],
+    "learning_rate": 0.0003,
+    "l2_reg": 1e-05,
+    "dropout_img": 0.3,
+    "dropout_fc": 0.2,
+    "n_splits": 5
+}
