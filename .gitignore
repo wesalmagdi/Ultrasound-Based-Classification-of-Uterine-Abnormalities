@@ -7,3 +7,17 @@ __pycache__/
 *.pyd
 .DS_Store
 Thumbs.db
+# Ignore dependencies
+node_modules/
+dist/
+build/
+
+# Ignore Python environment and cache
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
