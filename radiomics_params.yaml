@@ -8,6 +8,29 @@ imageType:
     sigma: [1.0, 2.0, 3.0]
   Wavelet: {}
 
+#GLCM: Gray-Level Co-occurrence Matrix
+# This method analyzes the spatial relationship of pixels by
+# counting how often a pixel with a specific gray-level value occurs in a particular spatial relationship
+# (at a given distance and angle) to another pixel with a different specific gray-level value. It provides insight
+# into the local homogeneity, contrast, and correlation of the image texture.
+# GLRLM: Gray-Level Run Length Matrix
+# The GLRLM quantifies consecutive pixels of the same gray-level intensity
+# in a given direction. A "run" is defined as a sequence of adjacent pixels with the same value.
+# This matrix helps analyze texture characteristics related to run lengths
+#  (e.g., short or long runs) and gray-level non-uniformity.
+# GLSZM: Gray-Level Size Zone Matrix
+# Similar to GLRLM but without considering directionality, the GLSZM quantifies
+# connected regions ("zones") of pixels with the same gray-level intensity and their size.
+# It provides information about the size and uniformity of these homogeneous zones within the image.
+# GLDM: Gray-Level Dependence Matrix
+# The GLDM measures local gray-level dependencies within a specified distance.
+# It counts the number of connected voxels that are "dependent" on a center voxel,
+#  where dependency is often defined by a threshold of absolute difference in gray levels.
+# NGTDM: Neighboring Gray Tone Difference Matrix
+# This matrix evaluates the difference between the gray-level intensity of a center pixel
+# and the average gray-level intensity of its neighborhood within a given distance.
+#  It helps quantify texture properties like "busyness" or coarseness,
+#  which relate to the degree of difference between a pixel and its surroundings
 featureClass:
   firstorder: []
   glcm: []
@@ -19,7 +42,7 @@ featureClass:
 setting:
   binWidth: 8
   resampledPixelSpacing: null
-  interpolator: 'sitkBSpline'
+  interpolator: "sitkBSpline"
   padDistance: 5
 
   correctMask: true

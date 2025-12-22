@@ -19,6 +19,8 @@ LBP_RADIUS = 2
 LBP_POINTS = 8 * LBP_RADIUS
 LBP_METHOD = "uniform"
 
+# Local Binary Patterns (LBP): Compares a pixel's intensity to its neighbors to create a binary pattern.
+# Wavelet Transforms: Decompose images into different frequency components to capture multi-scale texture
 image_files = sorted(os.listdir(IMG_DIR))
 for filename in image_files:
     patient_id = os.path.splitext(filename)[0]
