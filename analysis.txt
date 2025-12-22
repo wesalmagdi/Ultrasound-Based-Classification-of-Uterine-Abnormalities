@@ -1,0 +1,52 @@
+1. Experimental Summary The objective of this project was to develop and evaluate a hybrid deep learning model, 
+named "hybrid_vgg16_tabular," which leverages both visual (image) and structured (tabular) data for binary classification.
+ The dataset consists of 128 samples with 402 features, including an id, a binary label, 
+ and various radiomic or clinical measurements such as minor_axis_length and area
+
+
+2. Detailed Methodology
+    Model Architecture: Image Branch: A modified VGG16 architecture designed for single-channel (grayscale) images of size 224x224x1. 
+    It begins with a custom block1_conv1_gray layer containing 64 filters.
+    Tabular Branch: A dedicated branch for processing 40 tabular features.
+
+Fusion Strategy: The outputs of the image branch (after Global Average Pooling) 
+and the tabular branch are merged through a concatenation layer (concatenate_17) with 288 units.
+
+Final Classification: The fused features pass through two dense layers (128 and 64 units)
+ with dropout (30% for image branch, 20% for fully connected layers) to prevent overfitting before reaching the final output layer.
+
+Training Configuration:
+    Optimization: The model was trained with a learning rate of 0.0001 and an L2 regularization factor of 1e-05.
+
+Validation Strategy: A 5-fold cross-validation was employed to ensure the model's performance is consistent and not biased by a single train-test split.
+
+Data Preprocessing: The features were extracted from a source dataset where initial checks confirmed there were zero missing or infinite values across the 128 samples.
+    The target variable (label) was balanced as approximately 46.88% of the samples belonged to the positive class.
+
+
+Results and Performance Evaluation The model's performance was measured across five distinct folds, showing the following metrics:
+Fold	Accuracy	AUC	Precision	Recall
+1	76.19%	0.8091	0.7778	0.7000
+2	71.43%	0.8273	0.6429	0.9000
+3	70.00%	0.6970	0.8000	0.4444
+4	70.00%	0.7071	0.7143	0.5556
+5	70.00%	0.7800	0.7000	0.7000
+Mean	71.52%	0.7641	0.7270	0.6600
+
+
+4. Performance Analysis: Why the results are like this
+
+Data Scarcity vs. Model Capacity: With only 128 samples,
+the dataset is relatively small for a complex hybrid architecture using VGG16.
+This often leads to "high variance," where performance fluctuates between folds (e.g., AUC ranging from 0.69 to 0.82) based on how the small sample set is split.
+
+Overfitting Management: Training logs for Fold 3 and Fold 4 show training accuracy reaching 76-82% while validation accuracy remains at 70%,
+suggesting the model is still prone to memorizing the small training set despite dropout and L2 regularization.
+
+Recall Disparity: The recall varies significantly from 0.44 (Fold 3) to 0.90 (Fold 2). 
+This indicates the model's sensitivity to specific samples in the positive class,
+ likely because the 128 total samples provide too few examples for the model to learn a generalized pattern for identifying all positive cases.
+
+Synergy of Hybrid Data: Despite the small data size, the mean AUC of 0.76 is a positive indicator.
+ It suggests that the fusion of high-dimensional image features 
+ and low-dimensional tabular features provides a more robust signal than either data type could offer independently.
